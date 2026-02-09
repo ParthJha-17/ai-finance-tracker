@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Finance Tracker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <h1>AI Finance Tracker</h1>
+      <p>Use RAG-powered insights to categorize spending and map goals to personal finance models.</p>
+    </div>
+    <div class="status" id="status">Connected to API</div>
+  </header>
+
+  <main class="grid">
+    <section class="card">
+      <h2>Create User</h2>
+      <form id="user-form">
+        <label>
+          Name
+          <input name="name" type="text" placeholder="Alex" required />
+        </label>
+        <label>
+          Email
+          <input name="email" type="email" placeholder="alex@email.com" required />
+        </label>
+        <button type="submit">Save User</button>
+      </form>
+      <div class="result" id="user-result"></div>
+    </section>
+
+    <section class="card">
+      <h2>Add Transaction</h2>
+      <form id="transaction-form">
+        <label>
+          User ID
+          <input name="userId" type="number" placeholder="1" required />
+        </label>
+        <label>
+          Category
+          <input name="category" type="text" placeholder="Groceries" required />
+        </label>
+        <label>
+          Description
+          <input name="description" type="text" placeholder="Weekly grocery run" required />
+        </label>
+        <div class="two-col">
+          <label>
+            Amount
+            <input name="amount" type="number" step="0.01" placeholder="125.50" required />
+          </label>
+          <label>
+            Type
+            <select name="type" required>
+              <option value="EXPENSE">Expense</option>
+              <option value="INCOME">Income</option>
+            </select>
+          </label>
+        </div>
+        <label>
+          Date
+          <input name="date" type="date" required />
+        </label>
+        <button type="submit">Add Transaction</button>
+      </form>
+      <div class="result" id="transaction-result"></div>
+    </section>
+
+    <section class="card">
+      <h2>Add Goal</h2>
+      <form id="goal-form">
+        <label>
+          User ID
+          <input name="userId" type="number" placeholder="1" required />
+        </label>
+        <label>
+          Title
+          <input name="title" type="text" placeholder="Emergency Fund" required />
+        </label>
+        <label>
+          Description
+          <textarea name="description" rows="3" placeholder="Save 3 months of expenses." required></textarea>
+        </label>
+        <div class="two-col">
+          <label>
+            Target Amount
+            <input name="targetAmount" type="number" step="0.01" placeholder="4500" required />
+          </label>
+          <label>
+            Target Date
+            <input name="targetDate" type="date" required />
+          </label>
+        </div>
+        <button type="submit">Add Goal</button>
+      </form>
+      <div class="result" id="goal-result"></div>
+    </section>
+
+    <section class="card">
+      <h2>AI Insights</h2>
+      <form id="insight-form">
+        <label>
+          User ID
+          <input name="userId" type="number" placeholder="1" required />
+        </label>
+        <button type="submit">Generate Insights</button>
+      </form>
+      <pre class="result" id="insight-result">Submit a user ID to see insights.</pre>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
