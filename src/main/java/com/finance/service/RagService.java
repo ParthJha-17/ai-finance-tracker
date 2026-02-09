@@ -42,7 +42,7 @@ public class RagService {
         }
 
         return chunks.stream()
-                .sorted(Comparator.comparingInt(chunk -> score(chunk, queryTokens)).reversed())
+                .sorted(Comparator.comparingInt((RagChunk chunk) -> score(chunk, queryTokens)).reversed())
                 .limit(limit)
                 .map(RagChunk::formatted)
                 .collect(Collectors.toList());
