@@ -1,0 +1,131 @@
+:root {
+  color-scheme: light;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --border: #d6deeb;
+  --accent: #1d4ed8;
+  --text: #0f172a;
+  --muted: #64748b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.5rem 3rem;
+  background: linear-gradient(120deg, #1d4ed8, #3b82f6);
+  color: white;
+}
+
+.hero h1 {
+  margin: 0 0 0.5rem;
+  font-size: 2.5rem;
+}
+
+.hero p {
+  margin: 0;
+  max-width: 40rem;
+}
+
+.status {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem 3rem 3rem;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 1.3rem;
+}
+
+form {
+  display: grid;
+  gap: 1rem;
+}
+
+label {
+  display: grid;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+input,
+select,
+textarea {
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.95rem;
+}
+
+button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.7rem 1rem;
+  border-radius: 0.6rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(0.95);
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+}
+
+.result {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--text);
+  background: #f8fafc;
+  border-radius: 0.6rem;
+  padding: 0.75rem;
+  border: 1px dashed var(--border);
+  min-height: 2.5rem;
+  white-space: pre-wrap;
+}
+
+@media (max-width: 700px) {
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .grid {
+    padding: 1.5rem;
+  }
+}
