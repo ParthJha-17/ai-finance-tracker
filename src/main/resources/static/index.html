@@ -108,9 +108,19 @@
         </label>
         <button type="submit">Generate Insights</button>
       </form>
-      <pre class="result" id="insight-result">Submit a user ID to see insights.</pre>
+      <div class="result" id="insight-result">Submit a user ID to see insights.</div>
     </section>
   </main>
+
+  <div class="modal" id="insight-modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <header>
+        <h3 id="modal-title">AI Insight Summary</h3>
+        <button class="ghost" type="button" id="close-modal">Close</button>
+      </header>
+      <pre id="modal-body"></pre>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>

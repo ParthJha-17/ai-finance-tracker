@@ -9,6 +9,9 @@ const userResult = document.getElementById("user-result");
 const transactionResult = document.getElementById("transaction-result");
 const goalResult = document.getElementById("goal-result");
 const insightResult = document.getElementById("insight-result");
+const insightModal = document.getElementById("insight-modal");
+const closeModalButton = document.getElementById("close-modal");
+const modalBody = document.getElementById("modal-body");
 
 const request = async (path, options = {}) => {
   const response = await fetch(path, {
@@ -31,6 +34,33 @@ const setStatus = (message, isError = false) => {
     ? "rgba(239, 68, 68, 0.3)"
     : "rgba(255, 255, 255, 0.2)";
 };
+
+const formatInsight = (text) => {
+  try {
+    const parsed = JSON.parse(text);
+    return JSON.stringify(parsed, null, 2);
+  } catch (error) {
+    return text;
+  }
+};
+
+const openModal = (content) => {
+  modalBody.textContent = content;
+  insightModal.classList.add("open");
+  insightModal.setAttribute("aria-hidden", "false");
+};
+
+const closeModal = () => {
+  insightModal.classList.remove("open");
+  insightModal.setAttribute("aria-hidden", "true");
+};
+
+closeModalButton.addEventListener("click", closeModal);
+insightModal.addEventListener("click", (event) => {
+  if (event.target === insightModal) {
+    closeModal();
+  }
+});
 
 userForm.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -109,7 +139,9 @@ insightForm.addEventListener("submit", async (event) => {
       throw new Error(`${response.status} ${response.statusText}`);
     }
     const text = await response.text();
-    insightResult.textContent = text;
+    const formatted = formatInsight(text);
+    insightResult.textContent = "Insights ready. Check the pop-up window.";
+    openModal(formatted);
     setStatus("Insights ready");
   } catch (error) {
     insightResult.textContent = error.message;
