@@ -38,14 +38,55 @@ const setStatus = (message, isError = false) => {
 const formatInsight = (text) => {
   try {
     const parsed = JSON.parse(text);
+    if (parsed?.choices?.[0]?.message?.content) {
+      return parsed.choices[0].message.content;
+    }
+    if (parsed?.choices?.[0]?.text) {
+      return parsed.choices[0].text;
+    }
+    if (parsed?.content) {
+      return parsed.content;
+    }
     return JSON.stringify(parsed, null, 2);
   } catch (error) {
     return text;
   }
 };
 
+const renderInsight = (content) => {
+  modalBody.innerHTML = "";
+  const lines = content
+    .split(/\n+/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+  let list = null;
+
+  const appendParagraph = (text) => {
+    const paragraph = document.createElement("p");
+    paragraph.textContent = text;
+    modalBody.appendChild(paragraph);
+  };
+
+  lines.forEach((line) => {
+    const bulletMatch = line.match(/^[-*•]\s+(.*)/);
+    if (bulletMatch) {
+      if (!list) {
+        list = document.createElement("ul");
+        modalBody.appendChild(list);
+      }
+      const item = document.createElement("li");
+      item.textContent = bulletMatch[1];
+      list.appendChild(item);
+      return;
+    }
+
+    list = null;
+    appendParagraph(line);
+  });
+};
+
 const openModal = (content) => {
-  modalBody.textContent = content;
+  renderInsight(content);
   insightModal.classList.add("open");
   insightModal.setAttribute("aria-hidden", "false");
 };
